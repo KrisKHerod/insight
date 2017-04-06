@@ -14,7 +14,7 @@ def get_hours (log_file, hours_path):
 	dates_file = log_file.dates
 	timezone = log_file.timezone
 
-	frequency = []
+	busiest_hours = []
 
 	# iterate through all possible times between the ranges
 	for i, timestamp in enumerate(range(dates_file[0], dates_file[-1])):
@@ -28,12 +28,15 @@ def get_hours (log_file, hours_path):
 		i2 = bisect.bisect(dates_file, next_hour)
 
 		# create a tuple with the timestamp of the start of the busiest hour, the index, and the difference
-		frequency.append((timestamp, i1, i2-i1))
+		busiest_hours.append((timestamp, i1, i2-i1))
 
-
+	# log the data to the hours file
 	with open(hours_path, 'w') as hours_logfile:
-		for freq in sorted(frequency, key=lambda x: x[2], reverse=True)[:10]:
-			hours_logfile.write('%s %s,%d\n' %(str(datetime.fromtimestamp(freq[0]).strftime('%d/%b/%Y:%H:%M:%S')), timezone[freq[1]] ,freq[2]))
+
+		# sort the data
+		busiest_hours = sorted(busiest_hours, key=lambda x: x[2], reverse=True)[:10]
+		for hour in busiest_hours:
+			hours_logfile.write('%s %s,%d\n' %(str(datetime.fromtimestamp(hour[0]).strftime('%d/%b/%Y:%H:%M:%S')), timezone[hour[1]] ,hour[2]))
 
 
 	return True

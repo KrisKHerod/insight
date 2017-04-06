@@ -44,35 +44,35 @@ if __name__=="__main__":
 	check_logfile(blocked_path)
 
 
-	t0 = time.time()
+	# t0 = time.time()
 	log_file = load.Data()
 	log_file.load(log_path)
-	print ("loading data took: \t\t", time.time() - t0)
+	# print ("loading data took: \t\t", time.time() - t0)
 
-	print (log_file.file_len, len(log_file.host), len(log_file.resource), len(log_file.dates))
+	# print (log_file.file_len, len(log_file.host), len(log_file.resource), len(log_file.dates))
 
 	#get the hosts
-	t0 = time.time()
+	# t0 = time.time()
 	hosts.get_hosts(log_file, hosts_path)
-	print ("Getting hosts took: \t\t", time.time() - t0)
+	# print ("Getting hosts took: \t\t", time.time() - t0)
 
 
 	#get the resources
-	t0 = time.time()
+	# t0 = time.time()
 	resources.get_resources(log_file, resources_path)
-	print ("Getting resources took: \t", time.time() - t0)
+	# print ("Getting resources took: \t", time.time() - t0)
 
 
 	# get the hours
-	t0 = time.time()
+	# t0 = time.time()
 	hours.get_hours(log_file, hours_path)
-	print ("Getting busiest hours took: \t", time.time() - t0)
+	# print ("Getting busiest hours took: \t", time.time() - t0)
 	
 
 	# get the the blocked users
-	t0 = time.time()
+	# t0 = time.time()
 	blocked.get_blocked(log_file, blocked_path)
-	print ("Getting blocked users took: \t", time.time() - t0)
+	# print ("Getting blocked users took: \t", time.time() - t0)
 
 
 

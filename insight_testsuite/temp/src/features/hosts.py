@@ -17,6 +17,8 @@ def get_hosts(log_file, hosts_path):
 
 	# write the file to the log file
 	with open(hosts_path, 'w') as hosts:
+
+		# sort the list of tuple in alphanumeric order
 		c = sorted(c, key=lambda x: (-x[1], x[0]))
 		for tup in c:
 			hosts.write('%s\n' %','.join([str(t).strip("'") for t in tup]))

@@ -1,7 +1,6 @@
 '''
 this function loads the logfile into readable python format
 
-document*
 Loading takes longer so that the other features can be executed faster and are more scalableg
 
 '''
@@ -120,19 +119,13 @@ class Data:
 
 
 	# function to parse the file lines
+	# this function takes longer since it  parses every line in the log file which makes the getting the features easier and more scalable
 	def _parse(self, data):
 
 		for i, line in enumerate(data):
 
 			# check if there is a quotation in the line, if not then the program wont work
 			if '"' not in line: continue
-
-			# remove the non ascii character and strip newlines
-			# if '\u0343' in line: 
-			# 	line = line.replace("\u0343", "")
-				# line = line.decode('unicode_escape').encode('ascii','ignore')
-			# else: pass
-			# line = line.encode('ascii','ignore')
 
 			# get the index of the first and last quote where the method is stored
 			i1, i2 = line.index('"'), line.rindex('"')
